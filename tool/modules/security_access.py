@@ -131,10 +131,10 @@ def parse_args(args):
     subparsers = parser.add_subparsers()
 
     # Parser for security-access request-seed
-    parser_disc = subparsers.add_parser("seed")
-    parser_info.add_argument("src", type=str, help="arbitration ID to transmit from")
-    parser_info.add_argument("dst", type=str, help="arbitration ID to listen to")
-    parser_disc.set_defaults(func=get_seed)
+    parser_seed = subparsers.add_parser("seed")
+    parser_seed.add_argument("src", type=str, help="arbitration ID to transmit from")
+    parser_seed.add_argument("dst", type=str, help="arbitration ID to listen to")
+    parser_seed.set_defaults(func=get_seed)
 
     """
     # Parser for security-access offer-key
