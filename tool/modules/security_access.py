@@ -51,6 +51,7 @@ def get_seed(args):
         
     with CanActions(arb_id=send_arb_id) as can_wrap:
         print("Requesting Security Access seed")
+        import pdb; pdb.set_trace()
         can_wrap.send_single_message_with_callback([0x27, SA_SUBFUNCS['requestSeed'][0]], decode_seed)
     
     
