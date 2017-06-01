@@ -161,7 +161,7 @@ class CanActions:
         if bruteforce_key != None and min_value == None and max_value == None:
             min_value = bruteforce_key
             max_value = min_value
-        else if bruteforce_key == None and min_value != None:
+        elif bruteforce_key == None and min_value != None:
             if max_value == None:
                 max_value == (2<<key_byte_width) - 1
         else:
