@@ -29,8 +29,8 @@ def get_seed(args):
 
     :param: args: A namespace containing src and dst
     """
-    src = int_from_str_base(args.src)
-    dst = int_from_str_base(args.dst)
+    send_arb_id = int_from_str_base(args.src)
+    rcv_arb_id = int_from_str_base(args.dst)
     def decode_seed(msg):
         if msg.arbitration_id != rcv_arb_id:
             # these are not the droids we're looking for
