@@ -43,7 +43,7 @@ def get_seed(args):
                 return msg.data[3:]
             
             # message-queued response
-            else if msg.data[1] == 0x7F:
+            elif msg.data[1] == 0x7F:
                 print "hangout for a sec: response is queued at server"
         else:
             #Error
