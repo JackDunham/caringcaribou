@@ -36,7 +36,7 @@ def get_seed(args):
             # these are not the droids we're looking for
             return
         import pdb; pdb.set_trace()
-        if len(msg.data) >= 2
+        if len(msg.data) >= 2:
             # positive response
             if msg.data[1] == 0x67 and msg.data[2] == SA_SUBFUNCS['requestSeed'][0]:
                 print "yay!"
