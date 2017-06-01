@@ -154,6 +154,31 @@ class CanActions:
         if callback_done:
             callback_done("Scan finished")
 
+    def bruteforce_security_access(self, data, callback, key_byte_width, bruteforce_key=None, 
+                                   min_value=None, max_value=None, callback_end=None):
+        
+        # TODO(jack): move all of this checking into security_access.py
+        if bruteforce_key != None and min_value == None and max_value == None:
+            min_value = bruteforce_key
+            max_value = min_value
+        else if bruteforce_key == None and min_value != None:
+            if max_value == None:
+                max_value == (2<<key_byte_width) - 1
+        else:
+            assert False, "Either security-access key or bruteforce min-[max] muast be specified"        
+        assert min_value <= max_value
+        assert max_value < 2<<key_byte_width
+        
+        self.bruteforce_running = True
+        for sa_key in range(min_value, max_value+1) and self.bruteforce_running:
+            self.notifier.listeners = [callback(sa_key)]
+            data += list("{:0{}x}".format(sa_key, key_byte_width))
+            self.send(data)
+            time.sleep(MESSAGE_DELAY)
+        self.notifier.listeners = []
+        if callback_end:
+            callback_end()
+
     def send_single_message_with_callback(self, data, callback):
         self.notifier.listeners = [callback]
         self.send(data)
