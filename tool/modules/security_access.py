@@ -32,6 +32,7 @@ def get_seed(args):
     send_arb_id = int_from_str_base(args.src)
     rcv_arb_id = int_from_str_base(args.dst)
     def decode_seed(msg):
+        import pdb; pdb.set_trace()
         if msg.arbitration_id != rcv_arb_id:
             # these are not the droids we're looking for
             return
@@ -52,7 +53,7 @@ def get_seed(args):
     with CanActions(arb_id=send_arb_id) as can_wrap:
         print("Requesting Security Access seed")
         import pdb; pdb.set_trace()
-        can_wrap.send_single_message_with_callback([0x27, SA_SUBFUNCS['requestSeed'][0]], decode_seed)
+        can_wrap.send_single_message_with_callback(insert_message_length([0x27, SA_SUBFUNCS['requestSeed'][0]]), decode_seed)
     
     
 def send_key(args):
